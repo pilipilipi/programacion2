@@ -18,7 +18,7 @@ public class GestionCuentaCorriente {
 		c1.sacarDinero(2100);
 		
 		c2.ingresarDinero(300);
-		System.out.println("El saldo de c2 es " + c2.saldo + " " + c1.dni + " " + c2.nombre);
+		System.out.println("El saldo de c2 es " + c2.saldo + " " + c1.dni);
 		
 	}
 

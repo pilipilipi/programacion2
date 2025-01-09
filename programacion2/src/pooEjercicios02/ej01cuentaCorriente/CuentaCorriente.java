@@ -5,9 +5,9 @@ public class CuentaCorriente {
 	String dni, nombre;
 	double saldo;
 	
-	public CuentaCorriente() {
-
-	}
+//	public CuentaCorriente() {
+//
+//	}
 	
 	public CuentaCorriente(String d, double s) {
 		dni = d;
