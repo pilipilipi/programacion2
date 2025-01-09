@@ -1,4 +1,4 @@
-package ejemplosPoo.mesa;
+package ejemplosPoo.ej01mesa;
 
 public class FabricaMesas {
 
