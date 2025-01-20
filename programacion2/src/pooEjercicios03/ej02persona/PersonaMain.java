@@ -53,15 +53,9 @@ public class PersonaMain {
 		System.out.println("Dime el sexo, (h o m)");
 		char sexo = sc.next().charAt(0);
 		sc.nextLine();
-		
-		System.out.println("Dime el peso");
-		double peso = Double.parseDouble(sc.nextLine());
-		
-		System.out.println("Dime la altura");
-		double altura = Double.parseDouble(sc.nextLine());
 			
 		sc.close();
-		return new Persona(nombre, edad, peso, altura, sexo);		
+		return new Persona(nombre, edad, sexo);		
 		
 	}
 
