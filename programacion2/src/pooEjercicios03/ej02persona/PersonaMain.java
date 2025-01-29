@@ -7,8 +7,8 @@ public class PersonaMain {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);	
 		
-		Persona p1 = new Persona();
-		pedirDatos(p1);
+		Persona p1 = pedirDatos();
+		
 		p1.IMC();
 		System.out.println(p1.toString());
 		
@@ -16,7 +16,7 @@ public class PersonaMain {
 	}
 	
 	
-	public static Persona pedirDatos(Persona p) {
+	public static Persona pedirDatos() {
 		Scanner sc = new Scanner(System.in);	
 
 		System.out.println("Dime el nombre");
@@ -36,8 +36,7 @@ public class PersonaMain {
 		double altura = Double.parseDouble(sc.nextLine());
 			
 		sc.close();
-		return new Persona(nombre, edad, peso, altura, sexo);
-		
+		return new Persona(nombre, edad, peso, altura, sexo);	
 	}
 	
 	

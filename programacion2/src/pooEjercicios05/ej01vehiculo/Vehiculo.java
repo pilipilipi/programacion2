@@ -57,9 +57,11 @@ public class Vehiculo {
 	public boolean esIgual(Vehiculo v){
 		
 		if (v.marca == this.marca && v.modelo == this.modelo && Math.abs(v.velocidadMax - this.velocidadMax) < 5) {			
+			System.out.println("Son iguales");
 			return true;
 			
 		} else {
+			System.out.println("No son iguales");
 			return false;
 		}
 
@@ -68,10 +70,12 @@ public class Vehiculo {
 	
 	public boolean esIgual(String marca, String modelo, double velocidadMax){
 		
-		if (marca == this.marca && modelo == this.modelo && Math.abs(velocidadMax - this.velocidadMax) < 5) {			
+		if (marca == this.marca && modelo == this.modelo && Math.abs(velocidadMax - this.velocidadMax) < 5) {	
+			System.out.println("Son iguales");
 			return true;
 			
 		} else {
+			System.out.println("No son iguales");
 			return false;
 		}
 	}
@@ -104,47 +108,5 @@ public class Vehiculo {
 
 	public void setVelocidadMax(double velocidadMax) {
 		this.velocidadMax = velocidadMax;
-	}
-	
-	
-	
+	}	
 }
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
