@@ -25,27 +25,27 @@ public class Pelicula {
 	}
 
 	public boolean esAptaParaEdad(int edad) {
-		
-		if(edad >= this.clasificacionEdad) {
+
+		if (edad >= this.clasificacionEdad) {
 			System.out.println("Es apta");
 			return true;
-			
+
 		} else {
 			System.out.println("no es apta");
 			return false;
 		}
 	}
-	
+
 	public String obtenerDuracionFormato() {
 		String tiempo;
 		int horas, mins;
-		
-        horas = (int) this.duracion;
-        mins = (int) ((this.duracion - horas) * 60);
-        
-        tiempo = horas + " horas y " + mins + " minutos.";
+
+		horas = (int) this.duracion;
+		mins = (int) ((this.duracion - horas) * 60);
+
+		tiempo = horas + " horas y " + mins + " minutos.";
 		System.out.println(tiempo);
-		
+
 		return tiempo;
 	}
 
@@ -80,5 +80,5 @@ public class Pelicula {
 	public void setClasificacionEdad(int clasificacionEdad) {
 		this.clasificacionEdad = clasificacionEdad;
 	}
-	
+
 }
