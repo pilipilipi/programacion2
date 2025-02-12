@@ -27,5 +27,4 @@ public class Comercial extends Empleado {
 	public void setComision(double comision) {
 		this.comision = comision;
 	}
-	
 }
