@@ -1,119 +1,156 @@
 package pooEjercicios03.ej07;
 
 public class Baraja {
-	
-	private Carta[] baraja = new Carta[40];
-	private Carta[] barajada = new Carta[40];
-	private Carta[] monton = new Carta[40];
-	private Carta[] enMano = new Carta[40];
-	private static int siguiente = 0;
-	
-	private int[] numeros = {1, 2, 3, 4, 5, 6, 7, 10, 11, 12};
-	private String[] palos = {"bastos", "oros", "copas", "espadas"};
-	
+
+	private Carta[] baraja;
+	private Carta[] monton;
+	private Carta[] enMano;
+	private int siguiente;
+	private int indiceMano;
+	private int indiceMonton;
+
+	private final static int[] NUMEROS = { 1, 2, 3, 4, 5, 6, 7, 10, 11, 12 };
+	private final static String[] PALOS = { "bastos", "oros", "copas", "espadas" };
+
 	public Baraja() {
-		
+		this.baraja = new Carta[40];
+		this.monton = new Carta[40];
+		this.enMano = new Carta[40];
+		this.siguiente = 0;
+		this.indiceMano = 0;
+		this.indiceMonton = 0;
 	}
-	
+
 	public void crearBaraja() {
-		int indice = 0;
-		
-		for(int i = 0; i < this.palos.length; i++) {
-			for(int j = 0; j < this.numeros.length; j++) {
-				baraja[indice] = new Carta(this.numeros[j], this.palos[i]);
-				indice++;
-			}
-		}
-	}
-	
-	public void barajar() {
 		int aleatorio;
-			 
-		 for (int i = 0; i < this.baraja.length; i++) {
-			 
-			 do {
-		            aleatorio = (int) (Math.random() * 40);
-		        } while (this.barajada[aleatorio] != null);
-			 
-			 this.barajada[aleatorio] = this.baraja[i];
-		 }
-	}
-	
-	public void siguienteCarta() {
-		
-		if(siguiente <= barajada.length) {	
-			System.out.println(this.barajada[siguiente]);
 
-			monton[siguiente] = barajada[siguiente];
-			barajada[siguiente] = null;
-			
-			siguiente++;
-			
-		} else {
-			System.out.println("No quedan cartas");
-		}
+		for (int i = 0; i < PALOS.length; i++) {
+			for (int j = 0; j < NUMEROS.length; j++) {
 
-	}
-	
-	public void cartasDisponibles() {
-		
-		System.out.println("Quedan: " + (40 - siguiente) + " cartas para repartir");
-	}
-	
-	public void darCartas(int numCartas) {
-		
-		if(numCartas > (40 - siguiente)) {
-			System.out.println("No hay cartas suficientes");
-			
-		} else {
-			
-			for (int i = 0; i <= numCartas; i++) {
-				
-				
-				
+				do {
+					aleatorio = (int) (Math.random() * 40);
+				} while (this.baraja[aleatorio] != null);
+
+				baraja[aleatorio] = new Carta(NUMEROS[j], PALOS[i]);
 			}
 		}
 	}
-	
-	public void cartasMonton() {
-		
-		for(int i = 0; i < siguiente; i++) {
-			
+
+	public void barajar() {
+		Carta banquillo;
+		int aleatorio;
+		this.siguiente = 0;
+
+		for (int i = 0; i < this.baraja.length; i++) {
+
+			aleatorio = (int) (Math.random() * 40);
+			banquillo = baraja[aleatorio];
+
+			baraja[aleatorio] = baraja[i];
+			baraja[i] = banquillo;
+
+		}
+
+	}
+
+	public void siguienteCarta() {
+
+		if (this.siguiente >= this.baraja.length) {
+			System.out.println("\nNo quedan cartas");
+			return;
+		}
+
+		while (this.siguiente < this.baraja.length && this.baraja[siguiente] == null) {
+			this.siguiente++;
+
+			if (this.siguiente >= baraja.length) {
+				System.out.println("\nNo quedan cartas");
+				return;
+			}
+		}
+
+		System.out.println("\nSiguiente carta:" + this.baraja[siguiente]);
+
+		this.monton[this.indiceMonton] = this.baraja[this.siguiente];
+		this.baraja[this.siguiente] = null;
+
+		this.siguiente++;
+		this.indiceMonton++;
+	}
+
+	public void cartasDisponibles() {
+		int cartasRestantes = 0;
+
+		for (int i = 0; i < this.baraja.length; i++) {
+
+			if (this.baraja[i] != null) {
+				cartasRestantes++;
+			}
+		}
+
+		System.out.println("\nQuedan: " + cartasRestantes + " cartas restantes");
+	}
+
+	public void darCartas(int numCartas) {
+
+		if (numCartas > (this.baraja.length - this.siguiente)) {
+			System.out.println("\nNo hay cartas suficientes");
+			return;
+		}
+
+		for (int i = 0; i < numCartas; i++) {
+
+			while (this.siguiente < this.baraja.length && this.baraja[this.siguiente] == null) {
+				this.siguiente++;
+			}
+
+			if (this.siguiente < this.baraja.length) {
+
+				this.enMano[this.indiceMano] = this.baraja[this.siguiente];
+				this.baraja[this.siguiente] = null;
+
+				this.siguiente++;
+				this.indiceMano++;
+
+			} else {
+
+				System.out.println("\nNo hay suficientes cartas");
+				return;
+			}
 		}
 	}
-	
-	
-	
+
+	public void cartasMonton() {
+		System.out.println("\nMonton:");
+
+		for (int i = 0; i < this.monton.length; i++) {
+
+			if (this.monton[i] != null) {
+				System.out.println(this.monton[i]);
+			}
+		}
+	}
+
+	public void mostrarBaraja() {
+		System.out.println("\nBaraja restante:");
+
+		for (int i = 0; i < this.baraja.length; i++) {
+
+			if (this.baraja[i] != null) {
+				System.out.println(this.baraja[i]);
+			}
+		}
+	}
+
+	public void mostrarMano() {
+		System.out.println("\nMano:");
+
+		for (int i = 0; i < this.enMano.length; i++) {
+
+			if (this.enMano[i] != null) {
+				System.out.println(this.enMano[i]);
+			}
+		}
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
