@@ -9,4 +9,12 @@ public class Revista extends Biblioteca {
 		super(codigo, año, titulo);
 		this.numero = numero;
 	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}	
 }
